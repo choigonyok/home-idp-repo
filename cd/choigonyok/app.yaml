@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-choigonyok
+  namespace: argocd-system
+spec:
+  destination:
+    name: ""
+    namespace: argocd-system
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - path: manifest/choigonyok
+    repoURL: https://github.com/choigonyok/home-idp-repo.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
